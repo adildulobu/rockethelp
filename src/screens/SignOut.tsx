@@ -8,6 +8,7 @@ import Logo from '../assets/logo_primary.svg';
 
 import { Input } from '../components/Input';
 import { Button } from '../components/Button';
+import { Header } from '../components/Header';
 
 export function SignOut() {
   const [isLoading,setIsLoading] = useState(false); 
@@ -21,6 +22,10 @@ export function SignOut() {
       return Alert.alert('Registar', 'Preencha os campos');
     }
 
+    if(password != confirmPassword){
+      return Alert.alert('Registar', 'As senhas devem ser iguais.')
+    }
+    
     setIsLoading(true);
 
     auth().createUserWithEmailAndPassword(email,password)
@@ -46,15 +51,7 @@ export function SignOut() {
     <VStack flex={1} alignItems="center" bg="gray.600" px={8} pt={24}>
       <Logo />
 
-        <HStack>
-            <IconButton 
-                icon={<CaretLeft color={colors.gray[200]} size={24}/>}
-            />
-            <Heading color="gray.100" fontSize="xl" mt={20} mb={6} ml={4}>
-                Crie sua conta
-            </Heading>
-        </HStack>
-      
+      <Header title="Crie sua conta"/>
 
       <Input
         mb={4}
@@ -64,7 +61,7 @@ export function SignOut() {
       />
 
       <Input
-        mb={8}
+        mb={4}
         placeholder="Senha"
         InputLeftElement={<Icon as={<Key color={colors.gray[300]} />} ml={4} />}
         secureTextEntry

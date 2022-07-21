@@ -4,6 +4,7 @@ import auth, {FirebaseAuthTypes} from '@react-native-firebase/auth';
 
 import { SignIn } from "../screens/SignIn";
 import { AppRoutes } from "./app.routes";
+import { AuthRoutes } from "./auth.routes"
 import { Loading } from '../components/Loading';
 
 export function Routes(){
@@ -27,7 +28,7 @@ export function Routes(){
 
     return (
         <NavigationContainer>
-            {user ? <AppRoutes /> : <SignIn />}
+            {user ? <AppRoutes /> : <AuthRoutes />}
         </NavigationContainer>
     )
 }
